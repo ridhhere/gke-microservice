@@ -32,7 +32,7 @@ jobs:
 
     - name: Build and Push user-service
       run: |
-        cd /home/runner/work/deploy-microservice/deploy-microservice/user-service
+        cd /home/runner/work/gke-microservice/gke-microservice/user-service
         mvn clean package
         docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
         docker build -t ridhdocker/user-service:0.0.1 .
@@ -43,7 +43,7 @@ jobs:
 
     - name: Build and Push department-service
       run: |
-          cd /home/runner/work/deploy-microservice/deploy-microservice/department-service
+          cd /home/runner/work/gke-microservice/gke-microservice/user-service
           mvn clean package
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
           docker build -t ridhdocker/department-service:0.0.1 .
@@ -54,7 +54,7 @@ jobs:
 
     - name: Build and Push cloud-config-server
       run: |
-          cd /home/runner/work/deploy-microservice/deploy-microservice/cloud-config-server
+          cd /home/runner/work/gke-microservice/gke-microservice/user-service
           mvn clean package
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
           docker build -t ridhdocker/cloud-config-server:0.0.1 .
@@ -65,7 +65,7 @@ jobs:
 
     - name: Build and Push cloud-gateway
       run: |
-          cd /home/runner/work/deploy-microservice/deploy-microservice/cloud-gateway
+          cd /home/runner/work/gke-microservice/gke-microservice/user-service
           mvn clean package
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
           docker build -t ridhdocker/cloud-gateway:0.0.1 .
@@ -76,7 +76,7 @@ jobs:
 
     - name: Build and Push hystrix-dashboard
       run: |
-          cd /home/runner/work/deploy-microservice/deploy-microservice/hystrix-dashboard
+          cd /home/runner/work/gke-microservice/gke-microservice/user-service
           mvn clean package
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
           docker build -t ridhdocker/hystrix-dashboard:0.0.1 .
@@ -87,7 +87,7 @@ jobs:
 
     - name: Build and Push service-registry
       run: |
-          cd /home/runner/work/deploy-microservice/deploy-microservice/service-registry
+          cd /home/runner/work/gke-microservice/gke-microservice/user-service
           mvn clean package
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
           docker build -t ridhdocker/service-registry:0.0.1 .

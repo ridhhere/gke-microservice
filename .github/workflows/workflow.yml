@@ -30,40 +30,68 @@ jobs:
         server-username: MAVEN_USERNAME
         server-password: MAVEN_PASSWORD        
 
-    - name: Building and Pushing User-service
+    - name: Build and Push user-service
       run: |
+        cd /home/runner/work/deploy-microservice/deploy-microservice/user-service
+        mvn clean package
         docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-        mvn package dockerfile:push --file user-service/pom.xml
+        docker build -t ridhdocker/user-service:0.0.1 .
+        docker push ridhdocker/user-service:0.0.1
       env:
           MAVEN_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Build and Push department-service
-      run: mvn package dockerfile:push --file department-service/pom.xml
+      run: |
+          cd /home/runner/work/deploy-microservice/deploy-microservice/department-service
+          mvn clean package
+          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+          docker build -t ridhdocker/department-service:0.0.1 .
+          docker push ridhdocker/department-service:0.0.1
       env:
           MAVEN_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Build and Push cloud-config-server
-      run: mvn package dockerfile:push --file cloud-config-server/pom.xml
+      run: |
+          cd /home/runner/work/deploy-microservice/deploy-microservice/cloud-config-server
+          mvn clean package
+          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+          docker build -t ridhdocker/cloud-config-server:0.0.1 .
+          docker push ridhdocker/cloud-config-server:0.0.1
       env:
           MAVEN_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Build and Push cloud-gateway
-      run: mvn package dockerfile:push --file cloud-gateway/pom.xml
+      run: |
+          cd /home/runner/work/deploy-microservice/deploy-microservice/cloud-gateway
+          mvn clean package
+          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+          docker build -t ridhdocker/cloud-gateway:0.0.1 .
+          docker push ridhdocker/cloud-gateway:0.0.1
       env:
           MAVEN_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Build and Push hystrix-dashboard
-      run: mvn package dockerfile:push --file hystrix-dashboard/pom.xml
+      run: |
+          cd /home/runner/work/deploy-microservice/deploy-microservice/hystrix-dashboard
+          mvn clean package
+          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+          docker build -t ridhdocker/hystrix-dashboard:0.0.1 .
+          docker push ridhdocker/hystrix-dashboard:0.0.1
       env:
           MAVEN_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Build and Push service-registry
-      run: mvn package dockerfile:push --file service-registry/pom.xml
+      run: |
+          cd /home/runner/work/deploy-microservice/deploy-microservice/service-registry
+          mvn clean package
+          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+          docker build -t ridhdocker/service-registry:0.0.1 .
+          docker push ridhdocker/service-registry:0.0.1
       env:
           MAVEN_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
